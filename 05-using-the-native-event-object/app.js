@@ -2,24 +2,37 @@ const app = Vue.createApp({
   data() {
     return {
       counter: 0,
-      name: ''
+      name: '',
+      lastName:''
     };
   },
-  computed:{
-    fullname(){
-      console.log('Running again!!');
-       if(this.name==''){
-          return '';
-      }
-      return this.name + ' ' + 'kusalaporn';
+  watch:{
+    counter(value){
+    if(value>50){
+      const that = this; 
+      this.counter = 0;
+        setTimeout(function(){
+          that.counter = 0
+          },2000);
+
+        }
     }
+  },
+  computed:{
+    // fullname(){
+    //   console.log('Running again!!');
+    //    if(this.name==''){
+    //       return '';
+    //   }
+    //   return this.name + ' ' + 'kusalaporn';
+    // }
   },
   methods: {
     outputFullName(){
-      if(this.name==''){
+      if(this.name == '' || this.lastName == ''){
           return '';
       }
-      return this.name + ' ' + 'kusalaporn';
+      return this.name + ' ' + this.lastName ;
     },
     setName(event) {
       this.name = event.target.value + ' ' + lastName;
@@ -32,7 +45,8 @@ const app = Vue.createApp({
       // this.counter--;
     },
     resetInput(){
-      this.name='';
+      this.name=''; this.lastName='';
+
     }
   }
 });
